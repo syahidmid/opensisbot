@@ -1,14 +1,14 @@
-const token = '5636235462:AAEz9fpg8mYv1ZZx8XdmOkswekMPlJycvr8';
+const token = 'YOUR BOT TOKEN';
 
 const bot = new lumpia.init(token);
-bot.options.log_id = 925867562;
+bot.options.log_id = YOUR TELEGRAM ID;
 
 function doPost(e) {
   bot.doPost(e);
 }
 
 function setWebhook() {
-  let url = 'https://script.google.com/macros/s/AKfycbxlyWsTWZwGJBMGAHCedtAB6QF4drCPmSg9VfTCbfP8Ws1ql6TCA2NsRKJ5lfC74ZkN/exec';
+  let url = 'https://script.google.com/macros/s/xxxx';
   let result = bot.telegram.setWebhook(url);
   Logger.log(result);
 }
@@ -24,9 +24,9 @@ MinisheetDB2
 --------------------------------------------------------------------------------------------------------------
 */
 
-var ssid = '1MHXkH913-f2Ga7qfkFswjGqUWO3VYGvkl0iSMpP7NCg';
+var ssid = 'SHEET ID';
 // atau:
-var sheetURL = 'https://docs.google.com/spreadsheets/d/1MHXkH913-f2Ga7qfkFswjGqUWO3VYGvkl0iSMpP7NCg/edit#gid=0';
+var sheetURL = 'SPREADSHEET URL';
 
 var dbNilai = new miniSheetDB2.init(ssid, 'Nilai UTS', {    
     col_length: 5,
