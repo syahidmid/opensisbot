@@ -1,0 +1,82 @@
+/*
+METODE 1 
+Cek nilai ujian semua mata pelajaran 
+*/
+
+bot.hears(/^Nilai\s(\d{0,6})/i, ctx => {
+
+  if (match = /^Nilai\s(\d{0,6})/i) {
+    var nis = ctx.match[1];
+    var result = dbNilai.key(nis);
+
+    if (result) {
+      let pesan = 'Hai, ' + result.data[2];
+
+      pesan += '. Berikut ini adalah nilai ujian kamu: ';
+      pesan += '\n\n\🔖 Pendidikan Agama dan BP: ' + result.data[4];
+      pesan += '\n\🔖 Pendidikan Pancasila dan Kewarganegaraan: ' + result.data[5];
+      pesan += '\n\🔖 Bahasa Indonesia: ' + result.data[6];
+      pesan += '\n\🔖 Matematika: ' + result.data[7];
+      pesan += '\n\🔖 Sejarah Indonesia: ' + result.data[8];
+      pesan += '\n\🔖 Seni Budaya: ' + result.data[9];
+      pesan += '\n\🔖 Penjaskes: ' + result.data[10];
+      pesan += '\n\🔖 Prakarya dan Kewirausahaan: ' + result.data[11];
+      pesan += '\n\🔖 Bahasa Daerah: ' + result.data[12];
+
+      ctx.reply(pesan);
+
+
+      // Log Activity
+      let logPesansucces = 'Succes request: Siswa atas nama ' + result.data[2] + ' mengajukan permintaan informasi Nilai UTS'
+      dbActivity.setValue('A1', logPesansucces);
+    } else {
+      ctx.reply('Ups, sepertinya NIS yang kamu masukkan salah!');
+      let logPesanerror = 'Rejected request: Nilai UTS'
+      dbActivity.setValue('A1', logPesanerror);
+    }
+  }
+})
+
+/*
+METODE 2
+Cek nilai ujian mata pelajaran tertentu 
+*/
+
+bot.hears(/^Mapel\s(\w{3})\s(\d{0,6})/i, ctx => {
+
+  if (match = /^Mapel\s(\w{3})\s(\d{0,6})/i) {
+    var nis = ctx.match[2];
+    var ambilnis = dbNilai.key(nis);
+    var mapel = ctx.match[1].toLowerCase();
+   
+    var kolom
+    switch (mapel) {
+      case 'ipa':
+        kolom = 4
+        break;
+      case 'ips':
+        kolom = 5
+      case 'mat':
+        kolom = 6
+        break;
+      default:
+        kolom = false;
+    }
+
+    if (ambilnis) {
+
+      var mapelNotfound = 'Data tidak ditemukan, sepertinya kamu salah memasukkan kode mata pelajaran.';
+      mapelNotfound += '\n\nGunakan format: Mapel(spasi)Kode Mapel(spasi)NIS atau cek lagi kode mapel';
+
+      if (!kolom) return ctx.reply(mapelNotfound)
+
+      var pesan = 'Hai, ' + ambilnis.data[2];
+      pesan += '\n\n\🔖 Nilai kamu: ' + ambilnis.data[kolom];
+
+      return ctx.reply(pesan);
+    } else
+      return ctx.reply('Maaf, data yang kamu minta tidak ditemukan.')
+
+  }
+})
+
