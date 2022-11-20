@@ -4,35 +4,99 @@ Cek nilai ujian semua mata pelajaran
 */
 
 bot.hears(/^Nilai\s(\d{0,6})/i, ctx => {
-
+  let nama = ctx.from.first_name;
   if (match = /^Nilai\s(\d{0,6})/i) {
     var nis = ctx.match[1];
     var result = dbNilai.key(nis);
 
     if (result) {
-      let pesan = 'Hai, ' + result.data[2];
 
-      pesan += '. Berikut ini adalah nilai ujian kamu: ';
-      pesan += '\n\n\🔖 Pendidikan Agama dan BP: ' + result.data[4];
-      pesan += '\n\🔖 Pendidikan Pancasila dan Kewarganegaraan: ' + result.data[5];
-      pesan += '\n\🔖 Bahasa Indonesia: ' + result.data[6];
-      pesan += '\n\🔖 Matematika: ' + result.data[7];
-      pesan += '\n\🔖 Sejarah Indonesia: ' + result.data[8];
-      pesan += '\n\🔖 Seni Budaya: ' + result.data[9];
-      pesan += '\n\🔖 Penjaskes: ' + result.data[10];
-      pesan += '\n\🔖 Prakarya dan Kewirausahaan: ' + result.data[11];
-      pesan += '\n\🔖 Bahasa Daerah: ' + result.data[12];
+      var siswaJurusan = result.data[3];
+
+
+      let pesan = '🤖Hai, ' + result.data[1] + '!' + '\n\Berikut ini adalah nilai ujian kamu: ';
+      pesan += '\n\n\Nama Lengkap: ' + result.data[1];
+      pesan += '\n\Kelas: ' + result.data[3];
+
+      if (siswaJurusan == 'X IPA') {
+        pesan += '\n\n\🔖 Bahasa Indonesia: ' + result.data[4];
+        pesan += '\n\🔖 Bahasa Inggris: ' + result.data[5];
+        pesan += '\n\🔖 Pendidikan Agama Islam: ' + result.data[6];
+        pesan += '\n\🔖 Matematika: ' + result.data[7];
+        pesan += '\n\🔖 Biologi: ' + result.data[8];
+        pesan += '\n\🔖 Kimia: ' + result.data[9];
+        pesan += '\n\🔖 Penjaskes: ' + result.data[10];
+
+      } else {
+        if (siswaJurusan == 'X IPS') {
+          pesan += '\n\n\🔖 Bahasa Indonesia: ' + result.data[4];
+          pesan += '\n\🔖 Bahasa Inggris: ' + result.data[5];
+          pesan += '\n\🔖 Pendidikan Agama Islam: ' + result.data[6];
+          pesan += '\n\🔖 Sosiologi: ' + result.data[12];
+          pesan += '\n\🔖 Sejarah: ' + result.data[13];
+          pesan += '\n\🔖 Ekonomi: ' + result.data[14];
+          pesan += '\n\🔖 Geografi: ' + result.data[15];
+        } else {
+          if (siswaJurusan == 'XI IPA') {
+            pesan += '\n\n\🔖 Bahasa Indonesia: ' + result.data[4];
+            pesan += '\n\🔖 Bahasa Inggris: ' + result.data[5];
+            pesan += '\n\🔖 Pendidikan Agama Islam: ' + result.data[6];
+            pesan += '\n\🔖 Matematika: ' + result.data[7];
+            pesan += '\n\🔖 Biologi: ' + result.data[8];
+            pesan += '\n\🔖 Kimia: ' + result.data[9];
+            pesan += '\n\🔖 Penjaskes: ' + result.data[10];
+          } else {
+            if (siswaJurusan == 'XI IPS') {
+              pesan += '\n\n\🔖 Bahasa Indonesia: ' + result.data[4];
+              pesan += '\n\🔖 Bahasa Inggris: ' + result.data[5];
+              pesan += '\n\🔖 Pendidikan Agama Islam: ' + result.data[6];
+              pesan += '\n\🔖 Sosiologi: ' + result.data[12];
+              pesan += '\n\🔖 Sejarah: ' + result.data[13];
+              pesan += '\n\🔖 Ekonomi: ' + result.data[14];
+              pesan += '\n\🔖 Geografi: ' + result.data[15];
+            } else {
+              if (siswaJurusan == 'XII IPA') {
+                pesan += '\n\n\🔖 Bahasa Indonesia: ' + result.data[4];
+                pesan += '\n\🔖 Bahasa Inggris: ' + result.data[5];
+                pesan += '\n\🔖 Pendidikan Agama Islam: ' + result.data[6];
+                pesan += '\n\🔖 Matematika: ' + result.data[7];
+                pesan += '\n\🔖 Biologi: ' + result.data[8];
+                pesan += '\n\🔖 Kimia: ' + result.data[9];
+                pesan += '\n\🔖 Penjaskes: ' + result.data[10];
+              } else {
+                if (siswaJurusan == 'XII IPS') {
+                  pesan += '\n\n\🔖 Bahasa Indonesia: ' + result.data[4];
+                  pesan += '\n\🔖 Bahasa Inggris: ' + result.data[5];
+                  pesan += '\n\🔖 Pendidikan Agama Islam: ' + result.data[6];
+                  pesan += '\n\🔖 Sosiologi: ' + result.data[12];
+                  pesan += '\n\🔖 Sejarah: ' + result.data[13];
+                  pesan += '\n\🔖 Ekonomi: ' + result.data[14];
+                  pesan += '\n\🔖 Geografi: ' + result.data[15];
+                }
+              }
+
+            }
+
+          }
+        }
+      }
 
       ctx.reply(pesan);
-
-
       // Log Activity
-      let logPesansucces = 'Succes request: Siswa atas nama ' + result.data[2] + ' mengajukan permintaan informasi Nilai UTS'
-      dbActivity.setValue('A1', logPesansucces);
-    } else {
+      var logPesansucces = 'Succes request: User atas nama ' + nama + ' mengajukan permintaan informasi Nilai UTS ' + 'untuk ' + result.data[1] + ' dengan NIS: ' + result.data[0];
+
+      var newRow = dbLog.last_row + 1;
+      var simpanlog = dbLog.range(newRow, 1);
+      simpanlog.setValue(logPesansucces);
+    }
+    else {
       ctx.reply('Ups, sepertinya NIS yang kamu masukkan salah!');
-      let logPesanerror = 'Rejected request: Nilai UTS'
-      dbActivity.setValue('A1', logPesanerror);
+      var logPesanerror = 'Rejected request: User atas nama ' + nama +
+        ' salah memasukkan NIS saat mencoba menggunakan fitur Cek Nilai';
+
+      var newRow = dbLog.last_row + 1;
+      var simpanlog = dbLog.range(newRow, 1);
+      simpanlog.setValue(logPesanerror);
     }
   }
 })
@@ -43,21 +107,49 @@ Cek nilai ujian mata pelajaran tertentu
 */
 
 bot.hears(/^Mapel\s(\w{3})\s(\d{0,6})/i, ctx => {
+  let nama = ctx.from.first_name;
 
   if (match = /^Mapel\s(\w{3})\s(\d{0,6})/i) {
     var nis = ctx.match[2];
     var ambilnis = dbNilai.key(nis);
     var mapel = ctx.match[1].toLowerCase();
-   
+
     var kolom
     switch (mapel) {
-      case 'ipa':
+      case 'bin':
         kolom = 4
         break;
-      case 'ips':
+      case 'ben':
         kolom = 5
-      case 'mat':
+      case 'pai':
         kolom = 6
+        break;
+      case 'mtk':
+        kolom = 7
+        break;
+      case 'fis':
+        kolom = 8
+        break;
+      case 'bio':
+        kolom = 9
+        break;
+      case 'kim':
+        kolom = 10
+        break;
+      case 'pjs':
+        kolom = 11
+        break;
+      case 'sos':
+        kolom = 12
+        break;
+      case 'sej':
+        kolom = 13
+        break;
+      case 'eko':
+        kolom = 14
+        break;
+      case 'geo':
+        kolom = 15
         break;
       default:
         kolom = false;
@@ -65,17 +157,33 @@ bot.hears(/^Mapel\s(\w{3})\s(\d{0,6})/i, ctx => {
 
     if (ambilnis) {
 
-      var mapelNotfound = 'Data tidak ditemukan, sepertinya kamu salah memasukkan kode mata pelajaran.';
-      mapelNotfound += '\n\nGunakan format: Mapel(spasi)Kode Mapel(spasi)NIS atau cek lagi kode mapel';
+      var namapelajaran = dbKodemapel.key(mapel);
+      var pesan = '🤖Hai, ' + ambilnis.data[1];
+      pesan += '\n\n\Nilai kamu untuk mata pelajaran ' + namapelajaran.data[1] + ' adalah  ' + ambilnis.data[kolom];
 
-      if (!kolom) return ctx.reply(mapelNotfound)
 
-      var pesan = 'Hai, ' + ambilnis.data[2];
-      pesan += '\n\n\🔖 Nilai kamu: ' + ambilnis.data[kolom];
+      // Log Activity
+      var logPesansucces = 'Succes request: User atas nama ' + nama + ' mengajukan permintaan informasi Nilai UTS '
+        + 'untuk ' + ambilnis.data[1] + ' dengan NIS: ' + ambilnis.data[0];
 
+      var newRow = dbLog.last_row + 1;
+      var simpanlog = dbLog.range(newRow, 1);
+
+      simpanlog.setValue(logPesansucces);
       return ctx.reply(pesan);
+
+
     } else
-      return ctx.reply('Maaf, data yang kamu minta tidak ditemukan.')
+     var logPesanerror = 'Rejected request: User atas nama ' + nama +
+        ' salah memasukkan NIS saat mencoba menggunakan fitur Cek Nilai';
+      var newRow = dbLog.last_row + 1;
+      var simpanlog = dbLog.range(newRow, 1);
+
+      simpanlog.setValue(logPesanerror);
+
+    return ctx.reply('Yah, sepertinya kamu salah memasukkan kode mata pelajaran :(. \n\nGunakan format: Mapel(spasi)Kode Mapel(spasi)NIS.');
+
+
 
   }
 })
