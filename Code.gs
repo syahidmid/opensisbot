@@ -21,9 +21,9 @@ MinisheetDB2
 --------------------------------------------------------------------------------------------------------------
 */
 
-var ssid = '1MHXkH913-f2Ga7qfkFswjGqUWO3VYGvkl0iSMpP7NCg';
+var ssid = 'XXX';
 // atau:
-var sheetURL = 'https://docs.google.com/spreadsheets/d/1MHXkH913-f2Ga7qfkFswjGqUWO3VYGvkl0iSMpP7NCg/edit#gid=0';
+var sheetURL = 'xxx';
 
 var dbNilai = new miniSheetDB2.init(ssid, 'Nilai UTS', {    
     col_length: 20,
