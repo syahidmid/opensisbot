@@ -12,25 +12,25 @@ function handleUpdate() {
   let text = '/start';
 
   let update = { 
-    "update_id": 578315393, 
+    "update_id": xxx, 
     "message": { 
-      "message_id": 14, 
+      "message_id": xx, 
       "from": { 
-        "id": 925867562, 
+        "id": xx, 
         "is_bot": false, 
-        "first_name": "Syahid", 
-        "last_name": "Muhammad", 
-        "username": "syahidmid", 
+        "first_name": "xx", 
+        "last_name": "xxx", 
+        "username": "xxx", 
         "language_code": "en" 
         }, 
       "chat": { 
-        "id": 925867562, 
-        "first_name": "Syahid", 
-        "last_name": "Muhammad", 
-        "username": "syahidmid", 
+        "id": xxx, 
+        "first_name": "xxx", 
+        "last_name": "xxx", 
+        "username": "xxx", 
         "type": "private" 
       }, 
-      "date": 1668514366, 
+      "date": xxx, 
       "text": text, 
       "entities": [{ "offset": 0, "length": 6, "type": "bot_command" }] } 
     };
