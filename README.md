@@ -1,5 +1,5 @@
-# OpenSIS Bot
-Telegram bot for school
+# OpenSIS Bot Telegram For School
+Lorem ipsum
 
 
 # Instalation 
