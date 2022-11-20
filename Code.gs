@@ -49,6 +49,29 @@ var dbKodemapel = new miniSheetDB2.init(ssid, 'Kode Mapel', {
     json: true
 });
 
+var dbTest = new miniSheetDB2.init(ssid, 'Test', {    
+    col_length: 5,
+    row_start: 2,
+    json: true
+});
+
+/*
+Test Database
+Try to run this function to write a message "Hello World!" in the "Test" Sheets 
+Var newRow allows you be update the data on the next row, so it doesn't overwrite the previous data.
+*/
+
+function testDB() {
+
+  var message = "Hello, World! ";
+  var newRow = dbTest.last_row + 1;
+  var targetRow = dbTest.range(newRow, 1);
+
+  targetRow.setValue(message);
+
+}
+
+
 /*
 End of Database
 ------------------------------
