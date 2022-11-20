@@ -5,6 +5,9 @@ OpenSIS Bot dijalankan menggunakan Google App Script dan Google Spreadsheet sehi
 
 Bot Telegram ini dibuat menggunakan Library dari <a href="https://lumpia.js.org/docs/materi/halo-lumpia/">Lumpia</a> dan <a href="https://github.com/telegrambotindonesia/miniSheetDBv2">MiniSheetDBv2</a> dari Telegram Bot Indonesia. 
 
+# Demo
+<a href="https://t.me/opensisbot">t.me/opensisbot</a>
+Gunakan NIS 123456 sebagai user (siswa)
 
 # Instalation 
 Lorem ipsum
