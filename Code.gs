@@ -25,7 +25,7 @@ var ssid = 'XXX';
 // atau:
 var sheetURL = 'xxx';
 
-var dbNilai = new miniSheetDB2.init(ssid, 'Nilai UTS', {    
+var dbNilai = new miniSheetDB2.init(ssid, 'Nilai', {    
     col_length: 20,
     row_start: 2,
     json: true
