@@ -1,0 +1,35 @@
+/*
+FAQ PPDB 
+MinisheetDB2
+--------------------------------------------------------------------------------------------------------------
+Trigger dari Start.gs > // BUTTON > Info PPDB
+*/
+
+bot.action('info_ppdb', ctx => {
+  var ppdbInfo = 'Selamat datang di menu Informasi PPDB.';
+  ppdbInfo += '\n\nBerikut adalah informasi yang sering ditanyakan (FAQ) seputar Penerimaan Peserta Didik Baru di SMAN 1 Gegegsik ';
+
+  ppdbInfo += '\n\nSilakan ketik keyword yang bertanda pagar di bawah ini untuk bertanya. Contoh: #biaya'
+  ppdbInfo += '\n\n💌#Biaya -> Berapa biaya masuk SMAN 1 Gegesik? '
+  ppdbInfo += '\n\n💌#Kapan -> Kapan pendaftaran PPBD dimulai? '
+  ppdbInfo += '\n\n💌#Zonasi -> Wilayah mana saja yang termasuk zonasi SMAN 1 Gegesik? '
+  ppdbInfo += '\n\n💌#Jadwalospek -> Kapan OSPEK SMAN 1 Gegesik dimulai? '
+
+  ctx.reply(ppdbInfo)
+})
+
+bot.hears(/^#(\w+)/i, ctx => {
+ 
+  if (match = /^#(\w+)/i) {
+    var keyword = ctx.match[1].toLowerCase();
+    var pertanyaan = dbFAQ.key(keyword);
+    var jawaban = dbFAQ.key(keyword);
+
+    var pesan = "" + pertanyaan.data[1] + "\n\n"
+    pesan += jawaban.data[2];
+    
+    return ctx.replyIt(pesan);
+
+  }
+})
+
