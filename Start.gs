@@ -50,11 +50,6 @@ MENU KEYBOARD INLINE
 Result
 */
 
-// Result Button Test  
-bot.hears(['tes pesan'], ctx => ctx.reply(pesanUjian));
-// Default Responses 
-bot.action('ok_paham', ctx => ctx.reply('🤖Good!'))
-bot.action('kembali_menu', ctx => ctx.reply(pesan))
 
 // BUTTON > Jadwal Pelajaran
 bot.action('jadwal_pelajaran', ctx => ctx.reply('Ya, saya.'))
