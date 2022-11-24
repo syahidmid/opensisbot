@@ -7,6 +7,7 @@ Bot Telegram ini dibuat menggunakan Library dari <a href="https://lumpia.js.org/
 
 # Demo
 <a href="https://t.me/opensisbot">t.me/opensisbot</a>
+Mini database = <a href="https://docs.google.com/spreadsheets/d/1J8kwlxv2kXCUiNiR7knSqeqjrzGDaDujNJuCkrQ2Wmg/edit#gid=0">Spreadsheets</a>
 
 Gunakan NIS 123456 sebagai user (siswa)
 
