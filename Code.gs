@@ -31,6 +31,12 @@ var dbNilai = new miniSheetDB2.init(ssid, 'Nilai', {
     json: true
 });
 
+var dbFAQ = new miniSheetDB2.init(ssid, 'FAQ', {    
+    col_length: 5,
+    row_start: 2,
+    json: true
+});
+
 var dbPpdb = new miniSheetDB2.init(ssid, 'PPDB', {    
     col_length: 5,
     row_start: 2,
